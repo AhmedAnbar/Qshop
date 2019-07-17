@@ -2,7 +2,7 @@
 ```
 ```
 # Live Demo 
-https://vue-shop-6e94a.web.app
+[Demo](https://vue-shop-6e94a.web.app).
 
 ```
 ```
