@@ -17,6 +17,16 @@ const router = new Router({
           path: '',
           name: 'main',
           component: Main
+        },
+        {
+          path: '/about',
+          name: 'about',
+          component: require('./views/About.vue').default
+        },
+        {
+          path: '/checkout',
+          name: 'checkout',
+          component: require('./views/CheckOut.vue').default
         }
       ]
     },
@@ -27,7 +37,8 @@ const router = new Router({
       children: [
         { path: '', component: require('./views/admin/Overview.vue').default },
         { path: 'products', component: require('./views/admin/Products.vue').default },
-        { path: 'orders', component: require('./views/admin/Orders.vue').default }
+        { path: 'orders', component: require('./views/admin/Orders.vue').default },
+        { path: 'profile', component: require('./views/admin/Profile.vue').default }
       ]
     }
   ]

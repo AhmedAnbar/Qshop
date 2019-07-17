@@ -19,7 +19,7 @@
     </q-header>
 
     <q-footer elevated>
-      <q-tabs>
+      <q-tabs swipeable>
         <q-route-tab
         v-for="nav in navs"
           :key="nav.label"
@@ -40,6 +40,16 @@
       content-class="bg-grey-2"
     >
       <q-list>
+        <q-item>
+          <q-item-section avatar>
+            <q-avatar>
+              <img :src="image">
+            </q-avatar>
+          </q-item-section>
+          <q-item-section class="text-center">{{ name }}</q-item-section>
+          
+        </q-item>
+        <q-separator />
         <q-item-label header>Navigation</q-item-label>
         <q-item
           v-for="nav in navs"
@@ -66,7 +76,7 @@
       </q-list>
     </q-drawer>
     <q-page-container>
-      <router-view />
+      <router-view v-on:updateUser="getUser"/>
     </q-page-container>
   </q-layout>
 </template>
@@ -95,8 +105,16 @@ export default {
           label: 'Orders',
           to: '/admin/orders',
           icon: 'shopping_cart'
+        },
+        {
+          label: 'Profile',
+          to: '/admin/profile',
+          icon: 'fa fa-user'
         }
-      ]
+      ],
+      name: '',
+      email: '',
+      image: ''
     }
   },
   methods: {
@@ -108,7 +126,20 @@ export default {
         color: 'orange',
         position: 'top'
       })
+    },
+    getUser() {
+      let user = fb.auth().currentUser
+
+      if (user) {
+          this.name = user.displayName
+          this.image = user.photoURL
+          this.email = user.email
+      }
     }
+  },
+  created() {
+    this.getUser()
+    this.$on('updateUser', () => {this.getUser()})
   }
 }
 </script>

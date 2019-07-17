@@ -13,8 +13,12 @@
     "firebase": "^6.2.3",
     "quasar": "^1.0.0-beta.1",
     "register-service-worker": "^1.6.2",
+    "sweetalert2": "^8.13.0",
     "vue": "^2.6.10",
+    "vue-carousel": "^0.18.0",
+    "vue-firestore": "^0.3.22",
     "vue-router": "^3.0.3",
+    "vue2-filters": "^0.6.0",
     "vuex": "^3.0.1"
   },
   "devDependencies": {

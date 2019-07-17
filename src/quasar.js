@@ -13,6 +13,7 @@ import {
   //plugins
   Notify,
   Dialog,
+  QLinearProgress,
   //components
   QLayout,
   QHeader,
@@ -44,6 +45,16 @@ import {
   QPageScroller,
   QSpinnerCube,
   QMenu,
+  QSpace,
+  QBar,
+  QTooltip,
+  QUploader,
+  QEditor,
+  QBadge,
+  QAvatar,
+  QCarousel,
+  QCarouselControl,
+  QCarouselSlide,
 } from 'quasar'
 
 Vue.use(Quasar, {
@@ -79,6 +90,17 @@ Vue.use(Quasar, {
     QPageScroller,
     QSpinnerCube,
     QMenu,
+    QSpace,
+    QBar,
+    QTooltip,
+    QUploader,
+    QEditor,
+    QBadge,
+    QLinearProgress,
+    QAvatar,
+    QCarousel,
+    QCarouselControl,
+    QCarouselSlide,
   },
   directives: {
     ClosePopup,

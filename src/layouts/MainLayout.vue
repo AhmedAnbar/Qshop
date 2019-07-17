@@ -5,13 +5,16 @@
         <q-toolbar-title>
           Vue Shop
         </q-toolbar-title>
+         <q-btn class="text-white" to="/" flat label="Home" />
+         <q-btn class="text-white" to="/about" flat label="About" />
         <q-input dark dense standout v-model="search" input-class="text-left" class="q-ml-md mobile-hide">
           <template v-slot:append>
             <q-icon v-if="search === ''" name="search" />
             <q-icon v-else name="clear" class="cursor-pointer" @click="search = ''" />
           </template>
         </q-input>
-        <q-btn class="bg-indigo-3 q-ml-md" @click="loginDialog = true" label="Get Started"/>
+        <q-btn class="bg-indigo-3 q-ml-md" @click="loginDialog = true" rounded label="Get Started" no-caps/>
+        <q-btn class="bg-indigo-3 q-ml-sm" to="/checkout" rounded icon="fa fa-shopping-cart" no-caps/>
       </q-toolbar>
     </q-header>
 
@@ -81,7 +84,7 @@
 </template>
 
 <script>
-import { fb } from '../firebase'
+import { fb,db } from '../firebase'
 
 export default {
   name: 'MainLayout',
@@ -105,13 +108,26 @@ export default {
   methods: {
     registerUser () {
       fb.auth().createUserWithEmailAndPassword(this.register.email, this.register.password)
-        .then(() => {
-          this.$router.replace('admin')
-          this.$q.notify({
-            message: 'Register successful',
-            color: 'green',
-            position: 'top'
+        .then((user) => {
+          user.user.updateProfile({
+            photoURL: 'https://placeimg.com/500/300/tech/grayscale',
+            displayName: this.register.name
+          }).then().catch()
+          db.collection("profiles").doc(user.user.uid).set({
+            name: this.register.name
           })
+          .then(() => {
+            this.$router.replace('admin')
+            this.$q.notify({
+              message: 'Register successful',
+              color: 'green',
+              position: 'top'
+            })
+          })
+          .catch((error) => {
+            // eslint-disable-next-line
+            console.error("Error writing document to profiles: ", error);
+          });
         })
         .catch((error) => {
           var errorCode = error.code
@@ -178,3 +194,10 @@ export default {
   }
 }
 </script>
+<style lang="scss">
+@media screen and (max-width: 767px) {
+    .menu {
+      display: none;
+    }
+}
+</style>

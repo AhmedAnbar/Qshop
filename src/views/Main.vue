@@ -1,6 +1,7 @@
 <template>
   <q-page padding>
     <hero />
+    <products />
   </q-page>
 </template>
 
@@ -11,7 +12,11 @@
 export default {
   name: 'PageHome',
   components: {
-    'hero': require('../components/Hero').default
+    'hero': require('../components/Hero').default,
+    'products': require('../components/Products').default
+  },
+  created() {
+    
   }
 }
 </script>
