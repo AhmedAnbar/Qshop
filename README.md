@@ -1,5 +1,6 @@
 # vue-shop
 ```
+Application is underconstruction.
 ```
 # [Live Demo](https://vue-shop-6e94a.web.app)
 
