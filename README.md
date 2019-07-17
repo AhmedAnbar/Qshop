@@ -1,5 +1,11 @@
 # vue-shop
+```
+```
+# Live Demo 
+https://vue-shop-6e94a.web.app
 
+```
+```
 ## Project setup
 ```
 npm install
